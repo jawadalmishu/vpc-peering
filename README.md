@@ -27,6 +27,9 @@ Nginx is widely used by many high-traffic websites, web applications, and conten
 
 In addition to the open-source version, Nginx, Inc. offers commercial products and services, including Nginx Plus, which provides additional features and support for enterprise use cases.
 ## Overview of the full diagram below:
+
+![Full diagram](img/1.png)
+
 ## Prerequisite:
 
 - You will need GCP account
@@ -37,33 +40,64 @@ In this step we will create two VPC in two different region and give them an ip 
 
 First login into GCP. You will see dashboard like this
 
+![Google cloud playground dashboard](img/2.png)
+
 Now, go to vpc nerwork option from left side and click on vpc network.
 
+![VPC network option(highlighted area)](img/3.png)
+
 Now click on create VPC Network(see the highlighted area).
+
+![vpc network creation](img/4.png)
+
 ## 1st VPC
 
 Now we will create our first vpc. Give a vpc name(give name as your wish).
 
+![name of the first vpc](img/5.png)
+
 Now scroll and go to the new subnet option, give a name for subnet(subnet-ja-1), select a region(us-east-1) and add ip range(i have given 10.10.0.0/24).
+
+![creating subnet](img/6.png)
 
 Now, go to firewall option and select all firewall option. Remember this is just a hands on demo project that’s why we have selected all firewall option, you will not try this in production project.
 
+![Firewall option](img/7.png)
+
 Now scroll down and click create button to create our fisrt vpc.
 
+![create button](img/8.png)
+
+
 Now see the vpc network chart, our first vpc(vpc-ja-1) is listed there.
+
+![1st vpc](img/9.png)
+
 ## 2nd VPC
 
 We will do the same task to create our second vpc(vpc-ja-2)
 
 Again click on create vpc network. Give a vpc name(give name as your wish).
 
+![2nd vpc name](img/10.png)
+
 Now scroll and go to the new subnet option, give a name for subnet(subnet-ja-2), select a region(us-west-1) and add ip range(i have given 192.168.0.0/24).
+
+![creating subnet](img/11.png)
 
 Now, go to firewall option and select all firewall option. Remember this is just a hands on demo project that’s why we have selected all firewall option, you will not try this in production project.
 
+![Firewall option](img/12.png)
+
 Now scroll down and click create button to create our second vpc.
 
+![create button](img/13.png)
+
 Now see the vpc network chart, our first vpc(vpc-ja-1) is listed there.
+
+![2nd vpc](img/14.png)
+
+![vpc-ja-1 and vpc-ja-2](img/15.png)
 
 
 ## Step 2:
@@ -72,24 +106,42 @@ In this step we will create create two vm under this two vpc.
 
 Go to left hand menu. From Compute Engine click on vm instance option.
 
+![vm instance option](img/16.png)
+
 Now click on create instance(see the highlighted area).
+
+![create instance](img/17.png)
 
 
 ## 1st VM:
 
 Now we will create our first vm. Give a name to vm(give name as your wish), select a region(as we are creating this vm under our 1st vpc. First vpc is in the us-east1 region, so we will select us-east1 region), select zone(this is availability zone, i have selected use-east1-b, you can choose your own), select machine configuration(i have choosen E2, as it is low configuration and low cost, it’s a just hand’s on demo, so we don’t need any high configuration).
 
+![1st vm creation](img/18.png)
+
 Now, scroll down below to Firewall option and choose Allow HTTP traffic and Allow HTTPS traffic both options.
+
+![Firewall option](img/19.png)
 
 Now go to Advance options, click on Networking option.
 
+![Advance option](img/20.png)
+
 Now go to network interface option select network(we will select vpc-ja-1), select subnetwork(i have selected subnet-ja-1).
+
+![Network interface](img/21.png)
 
 Now, scroll below and click on create button.
 
+![create button](img/22.png)
+
 Our first vm is created. See the figure below.
 
+![first vm](img/23.png)
+
 Our 1st vm got the internet ip(private ip) of 10.10.0.2 and if you scroll to right you will see an external ip(public ip) of 34.23.174.27
+
+![Public ip and Private ip](img/24.png)
 
 
 ## 2nd VM:
