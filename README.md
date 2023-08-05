@@ -148,25 +148,50 @@ Our 1st vm got the internet ip(private ip) of 10.10.0.2 and if you scroll to rig
 
 Now again click on create instance option.
 
+![create instance](img/25.png)
+
 Now we will create our second vm. Give a name to vm(give name as your wish), select a region(as we are creating this vm under our 2nd vpc. Second vpc is in the us-west1 region, so we will select us-west1 region), select zone(this is availability zone, i have selected use-west1-b, you can choose your own), select machine configuration(i have choosen E2, as it is low configuration and low cost, it’s a just hand’s on demo, so we don’t need any high configuration).
+
+![2nd vm](img/26.png)
 
 Now, scroll down below to Firewall option and choose Allow HTTP traffic and Allow HTTPS traffic both options.
 
+![Firewall option](img/27.png)
+
 Now go to Advance options, click on Networking option.
+
+![Advance option](img/28.png)
 
 Now go to network interface option select network(we will select vpc-ja-2), select subnetwork(i have selected subnet-ja-2).
 
+![Network interface](img/29.png)
+
 Now, scroll below and click on create button.
+
+![Create button](img/30.png)
 
 Our second vm(vm-ja-2) is created. See the figure below.
 
+![second vm](img/31.png)
+
+
 Our 1st vm got the internet ip(private ip) of 192.168.0.2 and if you scroll to right you will see an external ip(public ip) of 34.168.99.60
+
+![Private ip and Public ip](img/32.png)
+
+![vm creation](img/33.png)
 
 Now, we successfully created our vm under the vpc. we will test the ping comand from one vm to another vm.
 
 Now we will access the terminal of vm-ja-1. For that click on SSH of vm-ja-1. Enable pop-up and authorize.
 
+![SSH client](img/34.png)
+
+![click on authorize](img/35.png)
+
 We, have successfully opened our vm-ja-1 terminal. Remember our first vm’s(vm-ja-1) ip is 10.0.0.2 and second vm’s(vm-ja-2) ip is 192.168.0.2
+
+![vm-ja-1 terminal](img/36.png)
 
 Now, from 1st vm’s terminal type this command.
 
@@ -176,6 +201,8 @@ ping 192.168.0.2 -c 5
 
 you will get output like this.
 
+![ping 192.168.0.2(second vm)](img/37.png)
+
 So, we are not getting ping response. Because this two vm is not connected. So, we will connect this two vm using vpc peering.
 
 
@@ -183,41 +210,71 @@ So, we are not getting ping response. Because this two vm is not connected. So, 
 
 In this step we will peer two vpc. From left hand menu vpc network click on vpc network peering.
 
+![vpc network peering](img/38.png)
+
 Now click on create connection
 
+![create connection](img/39.png)
+
 Click on continue button
+
+![continue button](img/40.png)
 
 
 ## Peering from vpc-ja-1 to vpc-ja-2:
 
 We are peering from vpc-ja-1 to vpc-ja-2. Give a name of the peering(i have given from-vpc-ja-1-to-vpc-ja-2), select you vpc, select peered vpc network.
 
+![peering from vpc-1 to vpc-2](img/41.png)
+
 Now click on create button.
+
+![create button](img/42.png)
 
 Now, we have successfully created our first peering.
 
+![from vpc-ja-1 to vpc-ja-2](img/43.png)
+
 Look at the status filed. It’s showing inactive. Because we have just peered from vpc-ja-1. We need to do this peering from vpc-ja-2 also. Then this peering will work.
+
+![from vpc-ja-1 to vpc-ja-2](img/44.png)
 
 
 ## Peering from vpc-ja-2 to vpc-ja-1:
 
 Now click on create peering connection.
 
+![create peering coonection](img/45.png)
+
 Click on continue button
+
+![continue button](img/46.png)
 
 We are peering from vpc-ja-2 to vpc-ja-1. Give a name of the peering(i have given from-vpc-ja-2-to-vpc-ja-1), select you vpc, select peered vpc network.
 
+![from-vpc-ja-2-to-vpc-ja-1](img/47.png)
+
 Now click on create button.
+
+![create button](img/48.png)
 
 So we have successfully created second peering from vpc-ja-2
 
+![peering](img/49.png)
+
 Look status field now, it’s showing active now.
+
+![peering](img/50.png)
+
 ## Step 4:
 
 In this step we will test the ping command from one vm to another whether it’s connected through vpc peering or not.
+
 ## # Ping from vm-ja-1 to vm-ja-2
 
 From left hand menu compute engine click on vpc instance.
+
+![menu](img/51.png)
 
 you will thed vm’s list. Open the SSH terminal of vm-ja-1
 
@@ -228,6 +285,8 @@ ping 192.168.0.2 -c 5
 ```
 
 you will get ouput like this
+
+![ping 192.168.0.2(vm-ja-2)](img/52.png)
 
 so, we have successfully ping the vm-ja-2 from vm-ja-1.
 
@@ -243,6 +302,8 @@ ping 192.168.0.2 -c 5
 ```
 
 you will get ouput like this
+
+![ping 10.10.0.2(vm-ja-1)](img/53.png)
 
 so, we have successfully ping the vm-ja-1 from vm-ja-2.
 
@@ -269,6 +330,8 @@ Type this command
 sudo lsof -i TCP:80
 ```
 
+![terminal](img/54.png)
+
 So, nginx is running. Now if we try to hit public ip of vm-ja-1 from the SSH terminal of vm-ja-2 we will get response from nginx server. Type this command from vm-ja-2 SSH terminal
 
 ```ruby
@@ -277,8 +340,16 @@ curl http://34.148.88.62
 
 You will get output like this
 
+![Reply from nginx server](img/55.png)
+
 It’s a html page.
 
 You can test it from your web browser also. Just type the public ip and hit Enter button
 
+![Output in browser(Google crome)](img/56.png)
+
 Finally we have done our hands on demo successfully.
+
+![Final diagram](img/57.png)
+
+
